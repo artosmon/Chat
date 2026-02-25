@@ -1,163 +1,170 @@
+package ru.sberbank.uvz3.client.dataexporter.ui
 
-Failed to load ApplicationContext for [WebMergedContextConfiguration@56d3e4a9 testClass = ru.sberbank.uvz3.client.dataexporter.db.FromDbFilesControllerTestSbc, locations = [], classes = [ru.sberbank.uvz3.client.dataexporter.ExportClientApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["client-data-exporter.export-from-db.enabled=true", "client-data-exporter.receiver=sbc", "org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true", "server.port=0"], contextCustomizers = [org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@160e99e0, [ImportsContextCustomizer@56bc8c45 key = [org.springframework.boot.resttestclient.autoconfigure.TestRestTemplateTestAutoConfiguration]], org.springframework.boot.test.context.PropertyMappingContextCustomizer@0, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@74667e6a, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@46320c9a, org.springframework.boot.web.server.context.SpringBootTestRandomPortContextCustomizer@7af0affa, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@256eacec], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
-java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@56d3e4a9 testClass = ru.sberbank.uvz3.client.dataexporter.db.FromDbFilesControllerTestSbc, locations = [], classes = [ru.sberbank.uvz3.client.dataexporter.ExportClientApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["client-data-exporter.export-from-db.enabled=true", "client-data-exporter.receiver=sbc", "org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true", "server.port=0"], contextCustomizers = [org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@160e99e0, [ImportsContextCustomizer@56bc8c45 key = [org.springframework.boot.resttestclient.autoconfigure.TestRestTemplateTestAutoConfiguration]], org.springframework.boot.test.context.PropertyMappingContextCustomizer@0, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@74667e6a, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@46320c9a, org.springframework.boot.web.server.context.SpringBootTestRandomPortContextCustomizer@7af0affa, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@256eacec], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.lambda$loadContext$0(DefaultCacheAwareContextLoaderDelegate.java:195)
-	at org.springframework.test.context.cache.DefaultContextCache.put(DefaultContextCache.java:214)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:160)
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:128)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:155)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:111)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
-	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:205)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
-	at java.base/java.util.Optional.orElseGet(Optional.java:364)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-Caused by: java.lang.IllegalStateException: Error processing condition on org.springframework.boot.resttestclient.autoconfigure.TestRestTemplateTestAutoConfiguration.testRestTemplate
-	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:60)
-	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:100)
-	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForBeanMethod(ConfigurationClassBeanDefinitionReader.java:196)
-	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:148)
-	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:124)
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:458)
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:310)
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
-	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:794)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:602)
-	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
-	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$2(SpringBootContextLoader.java:156)
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
-	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1465)
-	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:605)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:156)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:115)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:247)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.lambda$loadContext$0(DefaultCacheAwareContextLoaderDelegate.java:167)
-	... 21 more
-Caused by: java.lang.IllegalStateException: @ConditionalOnMissingBean did not specify a bean using type, name or annotation and the attempt to deduce the bean's type failed
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.validate(OnBeanCondition.java:657)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.<init>(OnBeanCondition.java:603)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchOutcome(OnBeanCondition.java:147)
-	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:47)
-	... 44 more
-Caused by: org.springframework.boot.autoconfigure.condition.OnBeanCondition$BeanTypeDeductionException: Failed to deduce bean type for org.springframework.boot.resttestclient.autoconfigure.TestRestTemplateTestAutoConfiguration.testRestTemplate
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.deducedBeanTypeForBeanMethod(OnBeanCondition.java:686)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.deducedBeanType(OnBeanCondition.java:676)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.<init>(OnBeanCondition.java:596)
-	... 46 more
-Caused by: java.lang.IllegalStateException: Failed to introspect Class [org.springframework.boot.resttestclient.autoconfigure.TestRestTemplateTestAutoConfiguration] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@2c7b84de]
-	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483)
-	at org.springframework.util.ReflectionUtils.findMethod(ReflectionUtils.java:240)
-	at org.springframework.util.ReflectionUtils.findMethod(ReflectionUtils.java:221)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.findBeanMethod(OnBeanCondition.java:715)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.getMethodReturnType(OnBeanCondition.java:710)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.getReturnType(OnBeanCondition.java:694)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.deducedBeanTypeForBeanMethod(OnBeanCondition.java:683)
-	... 48 more
-Caused by: java.lang.NoClassDefFoundError: org/springframework/boot/restclient/RestTemplateBuilder
-	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
-	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3580)
-	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2678)
-	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465)
-	... 54 more
-Caused by: java.lang.ClassNotFoundException: org.springframework.boot.restclient.RestTemplateBuilder
-	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
-	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
-	... 58 more
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+import org.mockito.kotlin.any
+import org.mockito.kotlin.argumentCaptor
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.eq
+import org.mockito.kotlin.times
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.resttestclient.TestRestTemplate
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.test.context.TestConstructor
+import org.springframework.test.context.bean.override.mockito.MockitoBean
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean
+import org.springframework.test.web.servlet.client.RestTestClient
+import org.springframework.web.client.RestTemplate
+import ru.sberbank.uvz3.client.dataexporter.ControllerTestSupport
+import ru.sberbank.uvz3.client.dataexporter.UnzippedFile
+import ru.sberbank.uvz3.client.dictionary.agreement.AgreementStatus
+import ru.sberbank.uvz3.client.dictionary.agreement.ProvisionType
+import ru.sberbank.uvz3.client.dictionary.clientinfo.ClientType
+import java.io.ByteArrayInputStream
+import java.time.LocalDate
 
+private const val CLIENT_ID_1 = "1"
+private const val CLIENT_ID_2 = "2"
+private const val CLIENT_ID_3 = "3"
+private const val GENERAL_AGREEMENT_ID = "1001"
+private const val CREDIT_AGREEMENT_ID = "2001"
+private const val COLLATERAL_AGREEMENT_ID = "3001"
+private const val GUARANTEE_AGREEMENT_ID = "4001"
 
-Error processing condition on org.springframework.boot.resttestclient.autoconfigure.TestRestTemplateTestAutoConfiguration.testRestTemplate
-java.lang.IllegalStateException: Error processing condition on org.springframework.boot.resttestclient.autoconfigure.TestRestTemplateTestAutoConfiguration.testRestTemplate
-	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:60)
-	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:100)
-	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForBeanMethod(ConfigurationClassBeanDefinitionReader.java:196)
-	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:148)
-	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:124)
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:458)
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:310)
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
-	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:794)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:602)
-	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
-	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$2(SpringBootContextLoader.java:156)
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
-	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1465)
-	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:605)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:156)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:115)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:247)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.lambda$loadContext$0(DefaultCacheAwareContextLoaderDelegate.java:167)
-	at org.springframework.test.context.cache.DefaultContextCache.put(DefaultContextCache.java:214)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:160)
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:128)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:155)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:111)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
-	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:205)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
-	at java.base/java.util.Optional.orElseGet(Optional.java:364)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-Caused by: java.lang.IllegalStateException: @ConditionalOnMissingBean did not specify a bean using type, name or annotation and the attempt to deduce the bean's type failed
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.validate(OnBeanCondition.java:657)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.<init>(OnBeanCondition.java:603)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchOutcome(OnBeanCondition.java:147)
-	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:47)
-	... 44 more
-Caused by: org.springframework.boot.autoconfigure.condition.OnBeanCondition$BeanTypeDeductionException: Failed to deduce bean type for org.springframework.boot.resttestclient.autoconfigure.TestRestTemplateTestAutoConfiguration.testRestTemplate
-	at app//org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.deducedBeanTypeForBeanMethod(OnBeanCondition.java:686)
-	at app//org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.deducedBeanType(OnBeanCondition.java:676)
-	at app//org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.<init>(OnBeanCondition.java:596)
-	... 46 more
-Caused by: java.lang.IllegalStateException: Failed to introspect Class [org.springframework.boot.resttestclient.autoconfigure.TestRestTemplateTestAutoConfiguration] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@2c7b84de]
-	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483)
-	at org.springframework.util.ReflectionUtils.findMethod(ReflectionUtils.java:240)
-	at org.springframework.util.ReflectionUtils.findMethod(ReflectionUtils.java:221)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.findBeanMethod(OnBeanCondition.java:715)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.getMethodReturnType(OnBeanCondition.java:710)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.getReturnType(OnBeanCondition.java:694)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition$Spec.deducedBeanTypeForBeanMethod(OnBeanCondition.java:683)
-	... 48 more
-Caused by: java.lang.NoClassDefFoundError: org/springframework/boot/restclient/RestTemplateBuilder
-	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
-	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3580)
-	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2678)
-	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465)
-	... 54 more
-Caused by: java.lang.ClassNotFoundException: org.springframework.boot.restclient.RestTemplateBuilder
-	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
-	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
-	... 58 more
+@SpringBootTest(
+    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+    properties = ["client-data-exporter.export-from-ui.enabled=true"]
+)
+@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
+@AutoConfigureTestRestTemplate
+internal class FromUiFilesControllerTest : ControllerTestSupport() {
 
+    @Autowired
+    private lateinit var metaRestTemplate: RestTestClient
+
+    @MockitoSpyBean
+    private lateinit var clientLoaderClient: ClientLoaderClient
+
+    @MockitoBean
+    private lateinit var restTemplate: RestTemplate
+
+    @Test
+    fun `вызываем load-clients-package-to-db`() {
+        val clientsPackage: ClientsPackage = createPackage()
+
+        whenever(
+            restTemplate.postForEntity(
+                eq("https://client-loader/api/v1/client/importData/bytes"),
+                any(),
+                eq(Long::class.java)
+            )
+        ) doReturn (ResponseEntity.ok(100))
+
+        val captor = argumentCaptor<ByteArray>()
+
+        val response: ResponseEntity<LoadClientsPackageResult> =
+            metaRestTemplate.postForEntity(
+                "/api/v1/load-clients-package-to-db",
+                clientsPackage,
+                LoadClientsPackageResult::class.java
+            )
+
+        assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
+
+        val loadClientsPackageResult = response.body as LoadClientsPackageResult
+        assertThat(loadClientsPackageResult.jobInstanceId).isEqualTo(100)
+        assertThat(loadClientsPackageResult.clientIds).isEqualTo(listOf("1", "2", "3"))
+
+        verify(clientLoaderClient, times(1)).uploadClientsPackageToLoader(captor.capture())
+
+        val bytes: ByteArray = captor.firstValue
+        val byteArrayInputStream = ByteArrayInputStream(bytes)
+
+//        writeFiles(byteArrayInputStream)
+
+        val files: List<UnzippedFile> = extractFiles(byteArrayInputStream)
+        verifyFiles(files, "csv-expected-data/from-ui")
+    }
+
+    private fun createPackage(): ClientsPackage {
+        val clients: List<NewClient> =
+            listOf(
+                NewClient(
+                    id = CLIENT_ID_1,
+                    type = ClientType.Person,
+                    inn = "123456789012",
+                    fullName = "Любимый клиент"
+                ),
+                NewClient(
+                    id = CLIENT_ID_2,
+                    type = ClientType.LegalEntity,
+                    inn = "1234567890",
+                    fullName = "Самый любимый клиент"
+                ),
+                NewClient(
+                    id = CLIENT_ID_3,
+                    type = ClientType.Individual,
+                    inn = "210987654321",
+                    fullName = "Нелюбимый клиент"
+                )
+            )
+
+        val credits = listOf(
+            NewCredit(
+                id = CREDIT_AGREEMENT_ID,
+                clientId = CLIENT_ID_1,
+                agreementNumber = "creditAgr",
+                agreementStatus = AgreementStatus.Working,
+                generalAgreementId = GENERAL_AGREEMENT_ID
+            )
+        )
+
+        val collateralToCredits = NewProvisionToCredits(
+            creditId = CREDIT_AGREEMENT_ID,
+            shareSum = "1000.0".toFloat(),
+            mainCollatFlg = true
+        )
+
+        val collaterals: List<NewCollateral> = listOf(
+            NewCollateral(
+                id = COLLATERAL_AGREEMENT_ID,
+                clientId = CLIENT_ID_1,
+                agreementNumber = "123",
+                agreementStatus = AgreementStatus.Working,
+                collateralType = ProvisionType.Warranty,
+                credits = listOf(collateralToCredits)
+            )
+        )
+
+        val generals: List<NewGeneralAgreement> = listOf(
+            NewGeneralAgreement(
+                id = GENERAL_AGREEMENT_ID,
+                clientId = CLIENT_ID_1,
+                agreementNumber = "generalAgr",
+                beginDate = LocalDate.parse("2023-06-29"),
+                endingDate = LocalDate.parse("2024-06-29"),
+                openDate = LocalDate.parse("2024-05-30"),
+                closeDate = LocalDate.parse("2024-05-29")
+            )
+        )
+
+        val guaranties = listOf(
+            NewGuaranteeAgreement(
+                id = GUARANTEE_AGREEMENT_ID,
+                clientId = CLIENT_ID_2,
+                agreementNumber = "789",
+                beginDate = LocalDate.parse("2022-06-29"),
+                endingDate = LocalDate.parse("2023-06-29"),
+            )
+        )
+
+        return ClientsPackage(clients, credits, collaterals, generals, guaranties)
+
+    }
+
+}
