@@ -1,15 +1,23 @@
-org.opentest4j.AssertionFailedError: 
-expected: 
-  "client_id	client_type	collection_model	collection_model_reason	collection_model_change_date	tb_lider	lider	client_forensic_class	problem_zone	client_forensic_val	total_cred_rub_sum	ead_rub_sum	row_number	load_date
-  1   person											1	2023-06-09 00:00:00.0
-  2   org											2	2023-06-09 00:00:00.0
-  3   ip											3	2023-06-09 00:00:00.0
-  "
- but was: 
-  "client_id	client_type	collection_model	collection_model_reason	collection_model_change_date	tb_lider	lider	client_forensic_class	problem_zone	client_forensic_val	total_cred_rub_sum	ead_rub_sum	row_number	load_date
-1	person											1	2023-06-09 00:00:00.0
-2	org											2	2023-06-09 00:00:00.0
-3	ip											3	2023-06-09 00:00:00.0
-"
-	at ru.sberbank.uvz3.client.dataexporter.ControllerTestSupport.verifyFiles(ControllerTestSupport.kt:77)
-	at ru.sberbank.uvz3.client.dataexporter.ui.FromUiFilesControllerTest.вызываем load-clients-package-to-db(FromUiFilesControllerTest.kt:89)
+    protected fun verifyFiles(files: List<UnzippedFile>, vararg directories: String) {
+        files.forEach {
+            //            println("file name: ${it.filename}")
+            //            println("file content:\n ${decompress(it.content)}")
+            //
+            val compressedFile = File(tmpDir.toFile(), it.filename)
+            compressedFile.writeBytes(it.content)
+
+            var expectedFileName = ""
+            for (directory in directories) {
+                expectedFileName = "$directory/${it.filename}".dropLast(".gz".length)
+                if (ClassPathResource(expectedFileName).exists()) {
+                    break
+                }
+            }
+
+            val actualCsv: String = decompress(compressedFile)
+            val expectedCsv: String =
+                StreamUtils.copyToString(ClassPathResource(expectedFileName).inputStream, Charsets.UTF_8)
+
+            Assertions.assertThat(actualCsv).isEqualTo(expectedCsv)
+        }
+    }
