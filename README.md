@@ -1,8 +1,5 @@
-println("expected length=${expectedCsv.length}, actual length=${actualCsv.length}")
-println("expected first 120: " + expectedCsv.take(120).replace("\n", "\\n").replace("\r", "\\r").replace("\t", "\\t"))
-println("actual   first 120: " + actualCsv.take(120).replace("\n", "\\n").replace("\r", "\\r").replace("\t", "\\t"))
-
-val expIdx = expectedCsv.indexOf('\n')
-val actIdx = actualCsv.indexOf('\n')
-println("expected first \\n at index=$expIdx")
-println("actual   first \\n at index=$actIdx")
+val marker = "load_date"
+val e = expectedCsv.indexOf(marker)
+val a = actualCsv.indexOf(marker)
+println("expected char after load_date: " + expectedCsv.getOrNull(e + marker.length)?.code)
+println("actual   char after load_date: " + actualCsv.getOrNull(a + marker.length)?.code)
