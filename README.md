@@ -10,8 +10,7 @@ import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.resttestclient.TestRestTemplate
-import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -41,11 +40,11 @@ private const val GUARANTEE_AGREEMENT_ID = "4001"
     properties = ["client-data-exporter.export-from-ui.enabled=true"]
 )
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-@AutoConfigureTestRestTemplate
+@AutoConfigureRestTestClient
 internal class FromUiFilesControllerTest : ControllerTestSupport() {
 
     @Autowired
-    private lateinit var metaRestTemplate: RestTestClient
+    private lateinit var restTestClient: RestTestClient
 
     @MockitoSpyBean
     private lateinit var clientLoaderClient: ClientLoaderClient
@@ -67,25 +66,25 @@ internal class FromUiFilesControllerTest : ControllerTestSupport() {
 
         val captor = argumentCaptor<ByteArray>()
 
-        val response: ResponseEntity<LoadClientsPackageResult> =
-            metaRestTemplate.postForEntity(
-                "/api/v1/load-clients-package-to-db",
-                clientsPackage,
-                LoadClientsPackageResult::class.java
-            )
+        // --- RestTestClient call ---
+        val result: LoadClientsPackageResult =
+            restTestClient.post()
+                .uri("/api/v1/load-clients-package-to-db")
+                .body(clientsPackage)
+                .exchange()
+                .expectStatus().isOk
+                .expectBody(LoadClientsPackageResult::class.java)
+                .returnResult()
+                .responseBody
+                ?: error("response body is null")
 
-        assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
-
-        val loadClientsPackageResult = response.body as LoadClientsPackageResult
-        assertThat(loadClientsPackageResult.jobInstanceId).isEqualTo(100)
-        assertThat(loadClientsPackageResult.clientIds).isEqualTo(listOf("1", "2", "3"))
+        assertThat(result.jobInstanceId).isEqualTo(100)
+        assertThat(result.clientIds).isEqualTo(listOf("1", "2", "3"))
 
         verify(clientLoaderClient, times(1)).uploadClientsPackageToLoader(captor.capture())
 
         val bytes: ByteArray = captor.firstValue
         val byteArrayInputStream = ByteArrayInputStream(bytes)
-
-//        writeFiles(byteArrayInputStream)
 
         val files: List<UnzippedFile> = extractFiles(byteArrayInputStream)
         verifyFiles(files, "csv-expected-data/from-ui")
@@ -164,7 +163,5 @@ internal class FromUiFilesControllerTest : ControllerTestSupport() {
         )
 
         return ClientsPackage(clients, credits, collaterals, generals, guaranties)
-
     }
-
 }
