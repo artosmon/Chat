@@ -1,7 +1,10 @@
+    fun readValue(id: String): String? {
+        val list: List<Map<String, Any>> = namedParametersJdbcTemplate.queryForList(
+            """
+                    SELECT value
+                    FROM internal_data
+                    WHERE id = :id
+                """.trimIndent(),
 
-
-    testImplementation("com.h2database", "h2")
-    testImplementation("org.springframework.boot", "spring-boot-starter-test")
-
-    testImplementation("org.dbunit", "dbunit")
-    testImplementation("com.github.springtestdbunit", "spring-test-dbunit", "1.3.0")
+            mapOf("id" to id)
+        ) as List<Map<String, Any>>
