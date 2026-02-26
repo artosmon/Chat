@@ -1,1 +1,1 @@
-import org.springframework.boot.autoconfigure.jms.artemis.ArtemisAutoConfiguration
+import ru.sberbank.uvz3.httpclient.ssl.core.RestTemplateBuilderSslConfigurer;
