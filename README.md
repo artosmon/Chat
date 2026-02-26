@@ -1,1 +1,5 @@
-import ru.sberbank.uvz3.httpclient.ssl.core.RestTemplateBuilderSslConfigurer;
+        restTemplateCustomizer.ifAvailable { c: RestTemplateCustomizer ->
+                c.customize(
+                        restTemplate
+                )
+        }
