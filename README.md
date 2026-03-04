@@ -1,14 +1,21 @@
-    private StandardIntegrationFlow prepareOutboundIntegrationFlow(Class<?> serviceInterface, RestTemplate updatePledgeHttpRestTemplate, Object... objectFactory) {
-        Jaxb2WrapperImpl wrapper = new Jaxb2WrapperImpl();
-        Arrays.stream(objectFactory).forEach(wrapper::scanWrappingFunctions);
-        return IntegrationFlow.from(serviceInterface)
-                .transform(new WrappingMessageTransformer(wrapper))
-                .log(LoggingHandler.Level.INFO, PLEDGE_ADAPTER_SYNAPSE_OUTBOUND_LOGGER)
-                .enrichHeaders(h -> h.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_XML_VALUE))
-                .handle(
-                        Http.outboundGateway(defineUri(), updatePledgeHttpRestTemplate)
-                                .expectedResponseType(JAXBElement.class))
-                .log(LoggingHandler.Level.INFO, PLEDGE_ADAPTER_SYNAPSE_INBOUND_LOGGER)
-                .transform(new UnwrappingMessageTransformer(wrapper))
-                .get();
-    }
+@Bean
+public IntegrationFlow getAssetsOutboundGatewayFlow(RestTemplate pledgeHttpRestTemplate) {
+    return prepareOutboundIntegrationFlow(GetPledgeIntegrationService.class, pledgeHttpRestTemplate, new ObjectFactory());
+}
+
+
+package ru.sberbank.uvz3.pledge.api.integration;
+
+import org.springframework.transaction.annotation.Transactional;
+import ru.sberbank.uvz3.pledge.http.GetAssetsObjectInfoRqType;
+import ru.sberbank.uvz3.pledge.http.GetAssetsObjectInfoRsType;
+
+import static org.springframework.transaction.annotation.Propagation.NOT_SUPPORTED;
+
+@Transactional(propagation = NOT_SUPPORTED)
+public interface GetPledgeIntegrationService {
+
+    GetAssetsObjectInfoRsType getPledgeByClient(GetAssetsObjectInfoRqType getAssetsObjectInfoRq);
+}
+
+
