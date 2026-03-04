@@ -1,24 +1,49 @@
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'pledgeService' defined in class path resource [ru/sberbank/uvz3/pledge/TestPledgeAdapterConfig.class]: Unsatisfied dependency expressed through method 'pledgeService' parameter 0: No qualifying bean of type 'ru.sberbank.uvz3.pledge.api.integration.GetPledgeIntegrationService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-	at app//org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
-	at app//org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:546)
-	at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1362)
-	at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1194)
-	at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
-	at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
-	at app//org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
-	at app//org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
-	at app//org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
-	at app//org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
-	at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:1225)
-	at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1704)
-	at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1651)
-	at app//org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912)
-	at app//org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 47 more
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'ru.sberbank.uvz3.pledge.api.integration.GetPledgeIntegrationService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-	at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:2297)
-	at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1725)
-	at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1651)
-	at app//org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912)
-	at app//org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 61 more
+package ru.sberbank.uvz3.pledges.config;
+
+import com.github.kagkarlsson.scheduler.boot.config.DbSchedulerCustomizer;
+import com.github.kagkarlsson.scheduler.serializer.JacksonSerializer;
+import com.github.kagkarlsson.scheduler.serializer.Serializer;
+import org.hibernate.cfg.AvailableSettings;
+import org.hibernate.type.format.jackson.JacksonJsonFormatMapper;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.hibernate.autoconfigure.HibernatePropertiesCustomizer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import ru.sberbank.uvz3.cloud.core.leader.scheduling.EnableSchedulingOnLeader;
+import ru.sberbank.uvz3.dictionary.registry.DictionaryRegistryConfigurer;
+import ru.sberbank.uvz3.pledge.api.bussiness.model.dictionary.RealizationStatus;
+import ru.sberbank.uvz3.pledges.application.service.sberfriend.SberfriendProperties;
+import ru.sberbank.uvz3.pledges.domain.LotOriginType;
+import tools.jackson.databind.ObjectMapper;
+
+import java.util.Optional;
+
+@Configuration
+@EnableScheduling
+@EnableSchedulingOnLeader
+@EnableConfigurationProperties(SberfriendProperties.class)
+public class RootConfig {
+
+    @Bean
+    DictionaryRegistryConfigurer dictionaryRegistryConfigurer() {
+        return registry -> registry
+                .addEnumRepository(RealizationStatus.class)
+                .addEnumRepository(LotOriginType.class);
+    }
+
+    @Bean
+    public DbSchedulerCustomizer dbSchedulerCustomizer(ObjectMapper objectMapper) {
+        return new DbSchedulerCustomizer() {
+            @Override
+            public Optional<Serializer> serializer() {
+                return Optional.of(new JacksonSerializer(objectMapper));
+            }
+        };
+    }
+
+    @Bean
+    public HibernatePropertiesCustomizer jsonFormatMapper(final ObjectMapper objectMapper) {
+        return properties -> properties.put(AvailableSettings.JSON_FORMAT_MAPPER, new JacksonJsonFormatMapper(objectMapper));
+    }
+}
