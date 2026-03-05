@@ -1,1 +1,10 @@
-Caused by: tools.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `ru.sberbank.uvz3.pledges.application.port.in.UpdateComment$Request` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
+@RestController
+@RequiredArgsConstructor
+public class UpdateCommentController {
+    final UpdateComment updateComment;
+
+    @PostMapping("/updateComment")
+    void update(@RequestBody UpdateComment.Request request, @AuthenticationPrincipal SudirUser sudirUser) {
+        updateComment.update(request, sudirUser.getUsername());
+    }
+}
