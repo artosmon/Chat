@@ -1,11 +1,13 @@
-@RestController
-@RequestMapping("/external-api/ai-agent")
-@RequiredArgsConstructor
-public class AiAgentController {
-    private final AiAgentProvider provider;
+public interface AiAgentProvider {
 
-    @PostMapping("/get-data-by-client-id")
-    public Set<AiAgentProvider.PledgeDto> getPublicationById(@RequestBody AiAgentProvider.GetDataByClientIdInput input) {
-        return provider.getDataByClientId(input);
+    Set<PledgeDto> getDataByClientId(GetDataByClientIdInput request);
+
+    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+    record GetDataByClientIdInput(@NotNull String clientId) {
+    }
+
+    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+    @Builder
+    record PledgeDto(String pledgeAssetType, BigDecimal pledgeAssetCost) {
     }
 }
