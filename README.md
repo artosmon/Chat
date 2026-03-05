@@ -1,1 +1,1 @@
-Caused by: org.hibernate.AnnotationException: Property 'ru.sberbank.uvz3.pledges.domain.CommonLot.pledges' has an unbound type and no explicit target entity (resolve this generics usage issue or set an explicit target attribute with '@OneToMany(target=)' or use an explicit '@Type')
+Caused by: tools.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `ru.sberbank.uvz3.pledges.application.port.in.UpdateComment$Request` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
