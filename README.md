@@ -1,10 +1,11 @@
-@RestController
-@RequiredArgsConstructor
-public class UpdateCommentController {
-    final UpdateComment updateComment;
+public interface UpdateComment {
 
-    @PostMapping("/updateComment")
-    void update(@RequestBody UpdateComment.Request request, @AuthenticationPrincipal SudirUser sudirUser) {
-        updateComment.update(request, sudirUser.getUsername());
+    void update(Request request, String authorLogin);
+
+    @Value
+    @Builder
+    class Request {
+        String pledgeId;
+        String commentText;
     }
 }
