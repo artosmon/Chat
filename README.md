@@ -1,13 +1,10 @@
-public interface AiAgentProvider {
+object MessageConverterProvider {
+    val OBJECT_TYPE = "object_type"
 
-    Set<PledgeDto> getDataByClientId(GetDataByClientIdInput request);
-
-    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-    record GetDataByClientIdInput(@NotNull String clientId) {
-    }
-
-    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-    @Builder
-    record PledgeDto(String pledgeAssetType, BigDecimal pledgeAssetCost) {
+    fun getMessageConverter(): MessageConverter {
+        val converter = MappingJackson2MessageConverter()
+        converter.setTargetType(MessageType.TEXT)
+        converter.setTypeIdPropertyName(OBJECT_TYPE)
+        return converter
     }
 }
