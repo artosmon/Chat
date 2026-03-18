@@ -1,15 +1,11 @@
-import org.springframework.jms.support.converter.Jackson2JsonMessageConverter
-import org.springframework.jms.support.converter.MessageConverter
-import org.springframework.jms.support.converter.MessageType
+public class CustomDataSetLoader extends FlatXmlDataSetLoader {
+    @Override
+    protected IDataSet createDataSet(Resource resource) throws Exception {
+        IDataSet dataSet = super.createDataSet(resource);
 
-object MessageConverterProvider {
+        ReplacementDataSet replacement = new ReplacementDataSet(dataSet);
+        replacement.addReplacementObject("[NULL]", null);
 
-    const val OBJECT_TYPE = "object_type"
-
-    fun getMessageConverter(): MessageConverter {
-        val converter = Jackson2JsonMessageConverter()
-        converter.setTargetType(MessageType.TEXT)
-        converter.setTypeIdPropertyName(OBJECT_TYPE)
-        return converter
+        return replacement;
     }
 }
